@@ -40,6 +40,7 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
+import org.compiere.util.Msg;
 import org.compiere.util.Util;
 import org.zkoss.json.JSONObject;
 
@@ -182,4 +183,15 @@ public class MBXSMBDashboard extends X_BXS_MBDashboard {
 		return parameters;
 	} //getParameters
 
+	@Override
+	protected boolean beforeSave(boolean newRecord) {
+		
+		// devCoffee #15285 - não permite criar registros à nível de empresa
+		if (getAD_Client_ID() > 0 && !MSysConfig.getBooleanValue("COF_METABASE_ALLOW_CLIENT", false)) {
+			log.saveError("AccessCannotInsert", Msg.getMsg(Env.getLanguage(Env.getCtx()), "AccessCannotInsert"));
+			return false;
+		}
+		
+		return super.beforeSave(newRecord);
+	}
 }	//	MBXSMBDashboard

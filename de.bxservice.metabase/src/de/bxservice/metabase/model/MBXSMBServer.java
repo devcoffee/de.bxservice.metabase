@@ -28,6 +28,10 @@ package de.bxservice.metabase.model;
 import java.sql.ResultSet;
 import java.util.Properties;
 
+import org.compiere.model.MSysConfig;
+import org.compiere.util.Env;
+import org.compiere.util.Msg;
+
 /**
  *	Metabase Server Model
  *
@@ -59,4 +63,15 @@ public class MBXSMBServer extends X_BXS_MBServer {
 		super(ctx, rs, trxName);
 	}	//	MBXSMBServer
 
+	@Override
+	protected boolean beforeSave(boolean newRecord) {
+		
+		// devCoffee #15285 - não permite criar registros à nível de empresa
+		if (getAD_Client_ID() > 0 && !MSysConfig.getBooleanValue("COF_METABASE_ALLOW_CLIENT", false)) {
+			log.saveError("AccessCannotInsert", Msg.getMsg(Env.getLanguage(Env.getCtx()), "AccessCannotInsert"));
+			return false;
+		}
+		
+		return super.beforeSave(newRecord);
+	}
 }	//	MBXSMBServer
