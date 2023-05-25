@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <bundle id="de.bxservice.metabase" version="0.1.0.qualifier">
+   <feature url="features/de.bxservice.idempiere.extensions.server.feature_0.1.0.qualifier" id="de.bxservice.idempiere.extensions.server.feature" version="0.1.0.qualifier">
       <category name="bxservice.idempiere.extensions"/>
-   </bundle>
+   </feature>
    <category-def name="bxservice.idempiere.extensions" label="bxservice idempiere extensions"/>
 </site>
