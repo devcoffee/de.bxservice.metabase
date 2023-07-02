@@ -4,7 +4,7 @@ Bundle-Name: de.bxservice.metabase
 Bundle-SymbolicName: de.bxservice.metabase;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Automatic-Module-Name: de.bxservice.metabase
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Require-Bundle: org.adempiere.base;bundle-version="0.0.0",
  org.adempiere.plugin.utils;bundle-version="0.0.0",
  org.adempiere.ui.zk;bundle-version="0.0.0",
