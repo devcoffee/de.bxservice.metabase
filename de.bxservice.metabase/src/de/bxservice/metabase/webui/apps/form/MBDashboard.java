@@ -37,6 +37,8 @@ import org.adempiere.webui.component.Label;
 import org.adempiere.webui.component.Listbox;
 import org.adempiere.webui.component.ListboxFactory;
 import org.adempiere.webui.component.Panel;
+import org.adempiere.webui.editor.WDateEditor;
+import org.adempiere.webui.editor.WDatetimeEditor;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.editor.WebEditorFactory;
 import org.adempiere.webui.event.ValueChangeEvent;
@@ -239,7 +241,8 @@ public class MBDashboard implements IFormController, EventListener<Event>, Value
 	public void valueChange(ValueChangeEvent evt) {
 		if (evt != null && evt.getSource() instanceof WEditor) {
 			WEditor editor = (WEditor) evt.getSource();
-			editor.setValue(evt.getNewValue());
+			if (!(editor instanceof WDateEditor || editor instanceof WDatetimeEditor))
+				editor.setValue(evt.getNewValue());
 			MBXSMBDashboardParam param = null;
 			for (Entry<MBXSMBDashboardParam, WEditor> es : mapEditorParameter.entrySet()) {
 				if (es.getValue() == editor) {
