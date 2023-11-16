@@ -116,7 +116,7 @@ public class MBXSMBDashboard extends X_BXS_MBDashboard {
 			MBXSMBDashboardParam param = entry.getKey();
 			Object value = entry.getValue();
 			if (value == null) {
-				params.put(param.getColumnName().toLowerCase(), null);
+				params.put(param.getColumnName().toLowerCase(), "null");
 			} else if (param.getAD_Reference_ID() == DisplayType.Date) {
 				SimpleDateFormat sdf = DisplayType.getDateFormat_JDBC();
 				params.put(param.getColumnName().toLowerCase(), sdf.format(value));
