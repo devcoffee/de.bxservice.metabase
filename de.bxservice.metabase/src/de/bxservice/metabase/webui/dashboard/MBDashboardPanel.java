@@ -45,12 +45,14 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Iframe;
 
 import de.bxservice.metabase.model.MBXSMBDashboard;
 import de.bxservice.metabase.model.MBXSMBDashboardParam;
 
-public class MBDashboardPanel extends DashboardPanel {
+public class MBDashboardPanel extends DashboardPanel implements EventListener<Event> {
 	/**
 	 * 
 	 */
@@ -78,8 +80,9 @@ public class MBDashboardPanel extends DashboardPanel {
 		}
 
 		// Timer not considered  for dashboard
-
+	
 		this.appendChild(iframe);
+
 	}
 
 	@Override
@@ -207,6 +210,18 @@ public class MBDashboardPanel extends DashboardPanel {
 				}
 			}
 		}				
+	}
+	
+	@Override
+	public boolean isLazy() {
+	
+		return true;
+	}
+
+	@Override
+	public void onEvent(Event event) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
